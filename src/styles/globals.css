@@ -141,6 +141,10 @@ a {
   font-size: 24px !important;
 }
 
+.font25{
+  font-size: 25px !important;
+}
+
 .font30{
   font-size: 30px !important;
 }
@@ -157,8 +161,14 @@ a {
   text-align: end;
 }
 
-.fixed-footer {
+.fixed-footer-container {
   min-height: calc(100vh - 132px);
+}
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  
 }
 
 .border-r {

@@ -13,24 +13,20 @@ function Ourwork(props) {
     const [data, setData] = useState({})
     const [like, setLike] = useState("un-like");
     const [point, setPoint] = useState("un-point");
-    const [likeIcon, setLikeIcon] = useState("un-like");
 
     const initialForm = {
         comment: "",
     };
     const [form, setForm] = useState(initialForm);
 
-
     useEffect(() => {
         setData(props.dataList)
-        console.log("props", props);
     }, [])
-
 
     return (
         <div>
             <Header title="OK Rs Report" description="Jenosize" keywords="Jenosize" />
-            <section className="py-3 fixed-footer ">
+            <section className="py-3">
                 <Container>
                     <Row className=' '>
                         <Col lg={8} md={8} sm={8} xs={8} className="d-flex align-items-center" >
@@ -180,17 +176,8 @@ function Ourwork(props) {
                                                 <img className="img-fluid" src="/images/svg/icon-comment.svg" alt="" />
                                                 <p className='font14 mb-0 blue-80 ml-2'>Reply</p>
                                             </div>
-                                            <div className='d-flex ml-4'
-                                                onClick={() => {
-                                                    if (likeIcon === "un-like") {
-                                                        setLikeIcon("like")
-                                                    } else {
-                                                        setLikeIcon("un-like")
-                                                    }
-
-                                                }}
-                                            >
-                                                {likeIcon === "like" ? <i className="fa fa-thumbs-up  blue-80 "></i> : <img className="img-fluid" src="/images/svg/icon-like.svg" alt="" />}
+                                            <div className='d-flex ml-4'>
+                                                <img className="img-fluid" src="/images/svg/icon-like.svg" alt="" />
                                                 <p className='font14 mb-0 ml-2 blue-80 '>Like</p>
                                             </div>
                                         </div>
@@ -529,13 +516,11 @@ export const getStaticProps = async ({ params }) => {
     data.filter((item, index) => {
         if (item.id == params.id) {
             dataList = item
-            console.log("item", item);
         }
     })
     return {
         props: { dataList },
     }
 }
-
 
 export default Ourwork;

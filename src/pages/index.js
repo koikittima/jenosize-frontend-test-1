@@ -4,6 +4,7 @@ import ChartLine from "../component/ChartLine";
 import { useRouter } from 'next/router';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Button, Box, BoxCard } from '../assets/styles/globalStyles';
+import CalendarForm from '../component/Calendar';
 import Footer from '../component/Footer'
 
 function Home(props) {
@@ -11,7 +12,6 @@ function Home(props) {
   const [tabReport, setTabReport] = useState("");
   const [tabList, setTabList] = useState("");
   const [type, setType] = useState("daily");
-  console.log("type", type);
 
   const dataList = [
     {
@@ -251,9 +251,84 @@ function Home(props) {
     datasets: dataDiamond
   }
 
+  const renderBtn = () => {
+    return (
+      <Row className="d-flex justify-content-between mt-4">
+        <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
+          <Button bg={tabReport === "report-like" || tabList === "list-like" ? "#3766FF" : "#fff"} color={tabReport === "report-like" || tabList === "list-like" ? "#fff" : "#3766FF"}
+            shadow border_radius="50px" border="1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
+            onClick={() => {
+              if (tabList) {
+                setTabList("list-like")
+              } else {
+                setTabReport("report-like")
+              }
+            }}
+          >
+            <span className="d-flex align-items-center justify-content-center font12 px-1">
+              <i className="fa fa-thumbs-up mr-1"></i>
+              Like
+            </span>
+          </Button>
+        </Col>
+        <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
+          <Button bg={tabReport === "report-comment" || tabList === "list-comment" ? "#3766FF" : "#fff"} color={tabReport === "report-comment" || tabList === "list-comment" ? "#fff" : "#3766FF"}
+            shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
+            onClick={() => {
+              if (tabList) {
+                setTabList("list-comment")
+              } else {
+                setTabReport("report-comment")
+              }
+            }}
+          >
+            <span className="d-flex align-items-center justify-content-center font12 px-1">
+              <i className="fa fa-comment mr-1"></i>
+              Comment
+            </span>
+          </Button>
+        </Col>
+        <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
+          <Button bg={tabReport === "report-point" || tabList === "list-point" ? "#3766FF" : "#fff"} color={tabReport === "report-point" || tabList === "list-point" ? "#fff" : "#3766FF"}
+            shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
+            onClick={() => {
+              if (tabList) {
+                setTabList("list-point")
+              } else {
+                setTabReport("report-point")
+              }
+            }}
+          >
+            <span className="d-flex align-items-center justify-content-center font12 px-1">
+              <i className="fa fa-gift mr-1"></i>
+              Point
+            </span>
+          </Button>
+        </Col>
+        <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
+          <Button bg={tabReport === "report-diamond" || tabList === "list-diamond" ? "#3766FF" : "#fff"} color={tabReport === "report-diamond" || tabList === "list-diamond" ? "#fff" : "#3766FF"}
+            shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF" className="mr-2"
+            onClick={() => {
+              if (tabList) {
+                setTabList("list-diamond")
+              } else {
+                setTabReport("report-diamond")
+              }
+            }}
+          >
+            <span className="d-flex align-items-center justify-content-center font12 px-1">
+              <i className="fas fa-gem mr-1"></i>
+              Diamond
+            </span>
+          </Button>
+        </Col>
+      </Row>
+    )
+  }
+
   const renderChartLine = () => {
     return (
-      <>
+      <div>
         {tabReport === "report-like" ?
           <ChartLine labels={dataLineLike.labels} datasets={dataLineLike.datasets} />
           :
@@ -268,7 +343,7 @@ function Home(props) {
                 :
                 ""
         }
-      </>
+      </div>
 
     )
   }
@@ -276,7 +351,7 @@ function Home(props) {
   const renderListLike = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className='d-flex align-items-center justify-content-center  mt-2'>
+        <div key={index} className='d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -284,10 +359,10 @@ function Home(props) {
             <Box className='p-2'>
               <Row className=' '>
                 <Col lg={9} md={9} sm={9} xs={8} className="d-flex align-items-center border-r" >
-                  <i class="fa fa-user-circle gray-40 font30 mr-2"></i>
+                  <i className="fa fa-user-circle gray-40 font30 mr-2"></i>
                   <div>
                     <p className='font10 mb-0 blod'>{item.name} {item.position}</p>
-                    <p className='font10 mb-0'><i class="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
+                    <p className='font10 mb-0'><i className="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
                   </div>
                 </Col>
                 <Col lg={3} md={3} sm={3} xs={4} className="d-flex align-items-center" >
@@ -308,7 +383,7 @@ function Home(props) {
   const renderListComment = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${1}`)}>
+        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -316,10 +391,10 @@ function Home(props) {
             <Box className='p-2'>
               <Row className=' '>
                 <Col lg={9} md={9} sm={9} xs={8} className="d-flex align-items-center border-r" >
-                  <i class="fa fa-user-circle gray-40 font30 mr-2"></i>
+                  <i className="fa fa-user-circle gray-40 font30 mr-2"></i>
                   <div>
                     <p className='font10 mb-0 blod'>{item.name} {item.position}</p>
-                    <p className='font10 mb-0'><i class="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
+                    <p className='font10 mb-0'><i className="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
                   </div>
                 </Col>
                 <Col lg={3} md={3} sm={3} xs={4} className="d-flex align-items-center" >
@@ -340,7 +415,7 @@ function Home(props) {
   const renderListPoint = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className=' d-flex align-items-center justify-content-center mt-2'>
+        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -348,10 +423,10 @@ function Home(props) {
             <Box className='p-2'>
               <Row className=' '>
                 <Col lg={9} md={9} sm={9} xs={8} className="d-flex align-items-center border-r" >
-                  <i class="fa fa-user-circle gray-40 font30 mr-2"></i>
+                  <i className="fa fa-user-circle gray-40 font30 mr-2"></i>
                   <div>
                     <p className='font10 mb-0 blod'>{item.name} {item.position}</p>
-                    <p className='font10 mb-0'><i class="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
+                    <p className='font10 mb-0'><i className="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
                   </div>
                 </Col>
                 <Col lg={3} md={3} sm={3} xs={4} className="d-flex align-items-center" >
@@ -372,7 +447,7 @@ function Home(props) {
   const renderListDiamon = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className=' d-flex align-items-center justify-content-center mt-2'>
+        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -380,10 +455,10 @@ function Home(props) {
             <Box className='p-2'>
               <Row className=' '>
                 <Col lg={9} md={9} sm={9} xs={8} className="d-flex align-items-center border-r" >
-                  <i class="fa fa-user-circle gray-40 font30 mr-2"></i>
+                  <i className="fa fa-user-circle gray-40 font30 mr-2"></i>
                   <div>
                     <p className='font10 mb-0 blod'>{item.name} {item.position}</p>
-                    <p className='font10 mb-0'><i class="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
+                    <p className='font10 mb-0'><i className="fas fa-calendar-alt mr-2"></i>{item.calendar}</p>
                   </div>
                 </Col>
                 <Col lg={3} md={3} sm={3} xs={4} className="d-flex align-items-center" >
@@ -410,8 +485,8 @@ function Home(props) {
             <img className="img-fluid" src="/images/svg/icon-share.svg" alt="img" />
           </div>
 
-          <Row>
-            <Col lg={3} md={6} sm={6} xs={6} className=" mt-4">
+          <Row className='py-4'>
+            <Col lg={6} md={6} sm={6} xs={6}>
               <BoxCard className='p-4'>
                 <div className='d-flex align-items-center justify-content-center'>
                   <i className="fa fa-thumbs-up mr-2 text-blue"></i>
@@ -421,11 +496,11 @@ function Home(props) {
                   <span className='font30 blod'>{item.like}</span>
                 </div>
                 <div className='text-center'>
-                  <span className='gray-70'>Likes</span>
+                  <span className='gray-70 blod'>Likes</span>
                 </div>
               </BoxCard>
             </Col>
-            <Col lg={3} md={6} sm={6} xs={6} className="mt-4">
+            <Col lg={6} md={6} sm={6} xs={6}>
               <BoxCard className='p-4'>
                 <div className='d-flex align-items-center justify-content-center'>
                   <i className="fa fa-comment mr-2 text-blue"></i>
@@ -435,11 +510,11 @@ function Home(props) {
                   <span className='font30 blod'>{item.comment}</span>
                 </div>
                 <div className='text-center'>
-                  <span className='gray-70'>Comment</span>
+                  <span className='gray-70 blod'>Comment</span>
                 </div>
               </BoxCard>
             </Col>
-            <Col lg={3} md={6} sm={6} xs={6} className="mt-4">
+            <Col lg={6} md={6} sm={6} xs={6} className="mt-4">
               <BoxCard className='p-4'>
                 <div className='d-flex align-items-center justify-content-center'>
                   <i className="fa fa-gift mr-2 text-blue"></i>
@@ -449,11 +524,11 @@ function Home(props) {
                   <span className='font30 blod'>{item.point}</span>
                 </div>
                 <div className='text-center'>
-                  <span className='gray-70'>Point</span>
+                  <span className='gray-70 blod'>Point</span>
                 </div>
               </BoxCard>
             </Col>
-            <Col lg={3} md={6} sm={6} xs={6} className="mt-4">
+            <Col lg={6} md={6} sm={6} xs={6} className="mt-4">
               <BoxCard className='p-4'>
                 <div className='text-center'>
                   <i className="fas fa-gem  mr-2 text-blue"></i>
@@ -463,7 +538,7 @@ function Home(props) {
                   <span className='font30 blod'>{item.diamond}</span>
                 </div>
                 <div className='d-flex align-items-center justify-content-center'>
-                  <span className='gray-70'>Diamond</span>
+                  <span className='gray-70 blod'>Diamond</span>
                 </div>
               </BoxCard>
             </Col>
@@ -476,8 +551,8 @@ function Home(props) {
   return (
     <div >
       <Header title="Jenosize" description="Jenosize" keywords="Jenosize" />
-      <section className="py-3 fixed-footer ">
-        <section className=" ">
+      <section className="py-4 ">
+        <section>
           <Container>
             <Row >
               <Col lg={6} md={6} sm={6} xs={6} className="d-flex align-items-center border-r" >
@@ -501,48 +576,83 @@ function Home(props) {
 
         <div className='border mt-4'></div>
 
-        <section className="py-4">
+        <section className="pt-4">
           <Container className="px-4" >
-            <div className='d-flex align-items-center justify-content-between'>
-              <div>
-                <span className={`${type === "daily" ? "btn-active" : ""} mr-4 cursor-p`}
-                  onClick={() => {
-                    setType("daily")
-                    setTabReport("")
-                    setTabList("")
-                  }}>
-                  Daily</span>
-                <span className={`${type === "weekly" ? "btn-active" : ""} mr-4 cursor-p`}
-                  onClick={() => {
-                    setType("weekly")
-                    setTabReport("report-like")
-                  }}> Weekly</span>
-                <span className={`${type === "monthly" ? "btn-active" : ""} cursor-p`}
-                  onClick={() => {
-                    setType("monthly")
-                  }} > Monthly</span>
-              </div>
+            <Row>
+              <Col lg={6} md={6} sm={6} xs={6}>
+                <div className='d-flex justify-content-between '>
+                  <span className={`${type === "daily" ? "btn-active" : "gray-70"} mr-4 cursor-p`}
+                    onClick={() => {
+                      setType("daily")
+                      setTabReport("")
+                      setTabList("")
+                    }}>
+                    Daily</span>
+                  <span className={`${type === "weekly" ? "btn-active" : "gray-70"} mr-4 cursor-p`}
+                    onClick={() => {
+                      if (tabList === "list-like") {
+                        setTabReport("")
+                        setType("weekly")
+                      } else {
+                        setType("weekly")
+                        setTabReport("report-like")
+                      }
+                    }}> Weekly</span>
+                  <span className={`${type === "monthly" ? "btn-active" : "gray-70"} cursor-p`}
+                    onClick={() => {
+                      if (tabList === "list-like") {
+                        setTabReport("")
+                        setType("monthly")
+                      } else {
+                        setType("monthly")
+                        setTabReport("report-like")
+                      }
+                    }} > Monthly</span>
+                </div>
+              </Col>
 
-              <div>
-                <i className={`fas fa-chart-bar mr-4 cursor-p font30 ${tabReport || type === "daily" ? "blue-80" : "gray-40"}`}
-                  onClick={() => {
-                    setTabReport("report-like")
-                    setTabList()
-                  }}
-                ></i>
+              <Col lg={6} md={6} sm={6} xs={6} >
+                <div className="d-flex justify-content-end" >
+                  <i className={`fas fa-chart-bar mr-4 cursor-p font30 ${tabReport || type === "daily" ? "blue-80" : "gray-40"}`}
+                    onClick={() => {
+                      setTabReport("report-like")
+                      setTabList("")
+                    }}
+                  ></i>
 
-                <i className={`fa fa-list cursor-p font30 ${tabList ? "blue-80" : "gray-40"}`}
-                  onClick={() => {
-                    setTabList("list-like")
-                    setType("weekly")
-                    setTabReport()
-                  }}
-                >
-                </i>
+                  <i className={`fa fa-list cursor-p font30 ${tabList ? "blue-80" : "gray-40"}`}
+                    onClick={() => {
+                      if (type === "daily") {
+                        setType("weekly")
+                        setTabList("list-like")
+                      } else {
+                        setTabList("list-like")
+                        setTabReport("")
+                      }
+                    }}
+                  >
+                  </i>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+
+        <div className='border'></div>
+
+        <section section className="py-4">
+          <Container className="px-4">
+            <div className='d-flex justify-content-between'>
+              <CalendarForm />
+              <div className='d-flex align-items-center'>
+                <img className="img-fluid" src="/images/svg/icon-todate.svg" alt="" />
+                <p className='font14 mb-0 blue-80 ml-2'>Today</p>
               </div>
             </div>
           </Container>
         </section>
+
+        <div className='border'></div>
 
         {type === "daily" ?
           <section className="py-4">
@@ -557,78 +667,9 @@ function Home(props) {
                 <span>10-16 December 2019</span>
                 <img className="img-fluid" src="/images/svg/icon-share.svg" alt="img" />
               </div>
-              <Row className="d-flex justify-content-between mt-4">
-                <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
-                  <Button bg={tabReport === "report-like" || tabList === "list-like" ? "#3766FF" : "#fff"} color={tabReport === "report-like" || tabList === "list-like" ? "#fff" : "#3766FF"}
-                    shadow border_radius="50px" border="1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
-                    onClick={() => {
-                      if (tabList) {
-                        setTabList("list-like")
-                      } else {
-                        setTabReport("report-like")
-                      }
-                    }}
-                  >
-                    <span className="d-flex align-items-center justify-content-center font12 px-1">
-                      <i className="fa fa-thumbs-up mr-1"></i>
-                      Like
-                    </span>
-                  </Button>
-                </Col>
-                <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
-                  <Button bg={tabReport === "report-comment" || tabList === "list-comment" ? "#3766FF" : "#fff"} color={tabReport === "report-comment" || tabList === "list-comment" ? "#fff" : "#3766FF"}
-                    shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
-                    onClick={() => {
-                      if (tabList) {
-                        setTabList("list-comment")
-                      } else {
-                        setTabReport("report-comment")
-                      }
-                    }}
-                  >
-                    <span className="d-flex align-items-center justify-content-center font12 px-1">
-                      <i className="fa fa-comment mr-1"></i>
-                      Comment
-                    </span>
-                  </Button>
-                </Col>
-                <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
-                  <Button bg={tabReport === "report-point" || tabList === "list-point" ? "#3766FF" : "#fff"} color={tabReport === "report-point" || tabList === "list-point" ? "#fff" : "#3766FF"}
-                    shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
-                    onClick={() => {
-                      if (tabList) {
-                        setTabList("list-point")
-                      } else {
-                        setTabReport("report-point")
-                      }
-                    }}
-                  >
-                    <span className="d-flex align-items-center justify-content-center font12 px-1">
-                      <i className="fa fa-gift mr-1"></i>
-                      Point
-                    </span>
-                  </Button>
-                </Col>
-                <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
-                  <Button bg={tabReport === "report-diamond" || tabList === "list-diamond" ? "#3766FF" : "#fff"} color={tabReport === "report-diamond" || tabList === "list-diamond" ? "#fff" : "#3766FF"}
-                    shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF" className="mr-2"
-                    onClick={() => {
-                      if (tabList) {
-                        setTabList("list-diamond")
-                      } else {
-                        setTabReport("report-diamond")
-                      }
-                    }}
-                  >
-                    <span className="d-flex align-items-center justify-content-center font12 px-1">
-                      <i className="fas fa-gem mr-1"></i>
-                      Diamond
-                    </span>
-                  </Button>
-                </Col>
-              </Row>
+              {renderBtn()}
               {tabList &&
-                <div className='mt-4'>
+                <div className='py-4'>
                   {tabList === "list-like" ?
                     renderListLike(dataList)
                     :
@@ -640,7 +681,6 @@ function Home(props) {
                         :
                         renderListDiamon(dataList)
                   }
-
                 </div>
               }
             </Container>
@@ -650,17 +690,19 @@ function Home(props) {
         <section className="py-4">
           <Container className="px-4" >
             {!tabList &&
-              renderChartLine()
+              <div className=''>
+                {renderChartLine()}
+              </div>
+
             }
           </Container>
         </section>
-
+        <section className="py-4"> </section>
       </section>
       <Footer />
     </div >
   )
 }
-
 
 export const getStaticProps = async () => {
   return {

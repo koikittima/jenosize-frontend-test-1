@@ -38,12 +38,11 @@ function NavBar() {
                                         : <i className="fas fa-chevron-down text-white font12" />
                                 }
                             </div>
+                            
+                            <div className="d-flex align-items-center cursor-p ">
+                                {router.asPath.includes("detail") ? <i class="fa fa-ellipsis-h text-white"></i> : <i className='fas fa-sliders-h text-white'></i>}
+                            </div>
 
-                            <Link href='/'>
-                                <div className="d-flex align-items-center cursor-p ">
-                                    {router.asPath.includes("detail") ? <i class="fa fa-ellipsis-h text-white"></i> : <i className='fas fa-sliders-h text-white'></i>}
-                                </div>
-                            </Link>
                         </Col>
                     </Row>
                 </Container>
