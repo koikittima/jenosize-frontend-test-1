@@ -256,7 +256,7 @@ function Home(props) {
       <Row className="d-flex justify-content-between mt-4">
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
           <Button bg={tabReport === "report-like" || tabList === "list-like" ? "#3766FF" : "#fff"} color={tabReport === "report-like" || tabList === "list-like" ? "#fff" : "#3766FF"}
-            shadow border_radius="50px" border="1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
+            shadow border_radius="50px" border="1px solid #3766FF" 
             onClick={() => {
               if (tabList) {
                 setTabList("list-like")
@@ -273,7 +273,7 @@ function Home(props) {
         </Col>
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
           <Button bg={tabReport === "report-comment" || tabList === "list-comment" ? "#3766FF" : "#fff"} color={tabReport === "report-comment" || tabList === "list-comment" ? "#fff" : "#3766FF"}
-            shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
+            shadow border_radius="50px" border=" 1px solid #3766FF" 
             onClick={() => {
               if (tabList) {
                 setTabList("list-comment")
@@ -290,7 +290,7 @@ function Home(props) {
         </Col>
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
           <Button bg={tabReport === "report-point" || tabList === "list-point" ? "#3766FF" : "#fff"} color={tabReport === "report-point" || tabList === "list-point" ? "#fff" : "#3766FF"}
-            shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF"
+            shadow border_radius="50px" border=" 1px solid #3766FF" 
             onClick={() => {
               if (tabList) {
                 setTabList("list-point")
@@ -307,7 +307,7 @@ function Home(props) {
         </Col>
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex justify-content-center">
           <Button bg={tabReport === "report-diamond" || tabList === "list-diamond" ? "#3766FF" : "#fff"} color={tabReport === "report-diamond" || tabList === "list-diamond" ? "#fff" : "#3766FF"}
-            shadow border_radius="50px" border=" 1px solid #3766FF" hover_bg="#CDD9FF" focus_bg="#3766FF" className="mr-2"
+            shadow border_radius="50px" border=" 1px solid #3766FF"  className="mr-2"
             onClick={() => {
               if (tabList) {
                 setTabList("list-diamond")
@@ -351,7 +351,7 @@ function Home(props) {
   const renderListLike = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className='d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
+        <div key={index} className='d-flex align-items-center justify-content-center mt-2 cursor-p' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -383,7 +383,7 @@ function Home(props) {
   const renderListComment = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
+        <div key={index} className=' d-flex align-items-center justify-content-center mt-2 cursor-p' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -415,7 +415,7 @@ function Home(props) {
   const renderListPoint = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
+        <div key={index} className=' d-flex align-items-center justify-content-center mt-2 cursor-p' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>
@@ -447,7 +447,7 @@ function Home(props) {
   const renderListDiamon = (data) => {
     if (data.length > 0) {
       return data.map((item, index) => (
-        <div key={index} className=' d-flex align-items-center justify-content-center mt-2' onClick={() => router.push(`/detail/${item.id}`)}>
+        <div key={index} className=' d-flex align-items-center justify-content-center mt-2 cursor-p' onClick={() => router.push(`/detail/${item.id}`)}>
           <div className='circle-blue text-white d-flex align-items-center justify-content-center mr-2'>
             <span className=''>{index + 1}</span>
           </div>

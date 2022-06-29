@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 
 function NavBar() {
@@ -8,7 +8,7 @@ function NavBar() {
     const [show, setShow] = useState(false)
     return (
         <React.Fragment>
-            <Navbar expand="lg" sticky="top" className=" pb-0 flex-column px-md-0 pb-md-0 bg-blue border-bottom">
+            <Navbar expand="lg" sticky="top" className=" pb-0 flex-column px-md-0 pb-md-0 bg-blue">
                 <Container className="" >
                     <Row className="w-100">
                         <Col lg={12} md={12} sm={12} className="d-flex align-items-center justify-content-between">

@@ -2,24 +2,19 @@ import React from "react";
 import { Form } from "react-bootstrap";
 
 function InputText({
-  title, star, type, idName, value, placeholder, classLabel, handleChange,
-  invalid, handleInvalid, disabled, classFormGroup, as, rows, classFormCon, 
+  title, type, idName, value, placeholder, classLabel, handleChange, classFormGroup, as, rows, classFormCon,
 }) {
   return (
     <Form.Group className={classFormGroup}>
       {title ? <Form.Label className={`${classLabel} mb-1`}>{title}</Form.Label> : ""}
       <Form.Control type={type} id={idName} name={idName}
-        className={invalid ? "is-invalid" : classFormCon ? classFormCon : ""}
+        className={classFormCon ? classFormCon : ""}
         as={as} rows={rows}
-        value={value} disabled={disabled ? true : false}
+        value={value}
         placeholder={placeholder}
         onChange={e => {
           handleChange(e.target.value)
-          if (handleInvalid) {
-            handleInvalid()
-          }
         }} />
-      {invalid ? <div className="invalid-error">{invalid}</div> : ""}
 
 
       <style jsx="true" global="true">{`

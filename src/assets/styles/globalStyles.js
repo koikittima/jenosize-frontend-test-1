@@ -19,17 +19,6 @@ export const Button = styled.button`
     line-height: 1.5;
     ${({ shadow }) => `box-shadow: ${shadow ? "0px 2px 2px rgba(97, 97, 97, 0.14), 0px 2px 2px rgba(97, 97, 97, 0.16)" : ""}`};
 
-    &:hover {
-        ${({ hover_bg, bg}) => `background: ${hover_bg ? hover_bg : bg};`}
-        ${({ hover_bg, border, type }) => `border: ${type === "none" ? `1px solid ${hover_bg}` : border}`};
-        ${({ shadow }) => `box-shadow: ${shadow ? "0px 2px 2px rgba(97, 97, 97, 0.14), 0px 2px 2px rgba(97, 97, 97, 0.16)" : ""}`};
-    }
-    &:focus {
-        box-shadow: 0 0 0 0.1rem ${({ bg }) => bg || "#fff"};
-        ${({ shadow }) => `box-shadow: ${shadow ? "0px 2px 2px rgba(97, 97, 97, 0.14), 0px 2px 2px rgba(97, 97, 97, 0.16)" : ""}`};
-        ${({ focus_bg, border, type }) => `border: ${type === "none" ? `1px solid ${focus_bg}` : border} `};
-        ${({ focus_bg, bg }) => `background: ${focus_bg ? focus_bg : bg}`};
-    }
 `
 export const Box = styled.div`
     background: #ffff;

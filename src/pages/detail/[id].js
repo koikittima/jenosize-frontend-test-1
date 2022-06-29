@@ -5,8 +5,6 @@ import Header from '../../component/Header'
 import { Button } from '../../assets/styles/globalStyles';
 import InputText from '../../component/InputText';
 
-
-
 function Ourwork(props) {
     const router = useRouter()
     const { id } = router.query;
@@ -113,7 +111,7 @@ function Ourwork(props) {
                 <Container className='mt-4'>
                     <div className="d-flex align-items-center  justify-content-center">
                         <Button bg={point === "point" ? "#3766FF" : "#fff"} color={point === "point" ? "#fff" : "#3766FF"}
-                            shadow border_radius="50px" border="1px solid #3766FF" type="none" className='mr-4' width="117px"
+                            shadow border_radius="50px" border="1px solid #3766FF"  className='mr-4' width="117px"
                             onClick={() => {
                                 if (point === "un-point") {
                                     setPoint("point")
@@ -130,7 +128,7 @@ function Ourwork(props) {
                         </Button>
 
                         <Button bg={like === "like" ? "#3766FF" : "#fff"} color={like === "like" ? "#fff" : "#3766FF"}
-                            shadow border_radius="50px" border="1px solid #3766FF" type="none" width="117px"
+                            shadow border_radius="50px" border="1px solid #3766FF"  width="117px"
                             onClick={() => {
                                 if (like === "un-like") {
                                     setLike("like")
